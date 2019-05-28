@@ -1,9 +1,10 @@
-package no.uio.ifi
+package no.uio.ifi.bio
 
 import org.biojava.nbio.alignment.Alignments
 import org.biojava.nbio.alignment.Alignments.PairwiseSequenceAlignerType
 import org.biojava.nbio.alignment.SimpleGapPenalty
 import org.biojava.nbio.core.alignment.matrices.SubstitutionMatrixHelper
+import org.biojava.nbio.core.alignment.template.Profile
 import org.biojava.nbio.core.sequence.ProteinSequence
 import org.biojava.nbio.core.sequence.compound.AminoAcidCompound
 import org.biojava.nbio.core.sequence.io.FastaReaderHelper
@@ -16,7 +17,7 @@ val LOGGER: Logger = getLogger("no.uio.ifi")
 const val GOP = 8
 const val EXTEND = 1
 
-fun getAlignment(uniProteinId1: String, uniProteinId2: String): String? {
+fun getAlignment(uniProteinId1: String, uniProteinId2: String): String {
     val sequence1 = getSequenceById(uniProteinId1)
     LOGGER.info("sequence1: {}", sequence1)
 
@@ -36,11 +37,12 @@ fun getAlignment(uniProteinId1: String, uniProteinId2: String): String? {
         matrix
     )
 
-    return smithWaterman.pair.toString()
+    return smithWaterman.pair.toString(Profile.StringFormat.CLUSTALW)
 }
 
 fun getSequenceById(uniProteinId: String): ProteinSequence? {
-    val url = "http://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=uniprotkb&id=$uniProteinId&format=fasta&style=raw&Retrieve=Retrieve"
+    val url =
+        "http://www.ebi.ac.uk/Tools/dbfetch/dbfetch?db=uniprotkb&id=$uniProteinId&format=fasta&style=raw&Retrieve=Retrieve"
     LOGGER.info("url: {}", url)
     val uniProteinFasta = URL(url)
     return FastaReaderHelper.readFastaProteinSequence(uniProteinFasta.openStream())[uniProteinId]
