@@ -1,0 +1,22 @@
+language: generic
+
+node_js:
+  - node
+
+java:
+  - java
+
+cache:
+  directories:
+    - node_modules
+    - .autoconf
+    - $HOME/.m2
+
+before_install:
+  - npm install -g serverless
+
+install:
+  - mvn install
+
+after_success:
+  - sls deploy
