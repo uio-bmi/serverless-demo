@@ -19,4 +19,4 @@ install:
   - mvn install
 
 after_success:
-  - sls deploy
+  - sls deploy --region eu-north-1
