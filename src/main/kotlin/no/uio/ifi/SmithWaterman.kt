@@ -13,23 +13,20 @@ import java.net.URL
 
 val LOGGER: Logger = getLogger("no.uio.ifi")
 
+const val GOP = 8
+const val EXTEND = 1
+
 fun getAlignment(uniProteinId1: String, uniProteinId2: String): String? {
-
     val sequence1 = getSequenceById(uniProteinId1)
-    val sequence2 = getSequenceById(uniProteinId2)
-
     LOGGER.info("sequence1: {}", sequence1)
+
+    val sequence2 = getSequenceById(uniProteinId2)
     LOGGER.info("sequence2: {}", sequence2)
 
     val matrix = SubstitutionMatrixHelper.getBlosum65()
-
     val penalty = SimpleGapPenalty()
-
-    val gop = 8
-    val extend = 1
-    penalty.openPenalty = gop
-    penalty.extensionPenalty = extend
-
+    penalty.openPenalty = GOP
+    penalty.extensionPenalty = EXTEND
 
     val smithWaterman = Alignments.getPairwiseAligner<ProteinSequence, AminoAcidCompound>(
         sequence1,
@@ -39,7 +36,7 @@ fun getAlignment(uniProteinId1: String, uniProteinId2: String): String? {
         matrix
     )
 
-    return smithWaterman.pair.toString(60)
+    return smithWaterman.pair.toString()
 }
 
 fun getSequenceById(uniProteinId: String): ProteinSequence? {
