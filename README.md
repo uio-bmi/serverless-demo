@@ -61,23 +61,10 @@ P69905    EFTPAVHASLDKFLASVSTVLTSKY 141
 P68871    EFTPPVQAAYQKVVAGVANALAHKY 146
 ```
 
-**UniProt alignment**: https://www.uniprot.org/align/
+**Available extra options**:
 
-**Execution time**: 15 s
-
-**Result**:
-```
-CLUSTAL O(1.2.4) multiple sequence alignment
-
-SP|P69905|HBA_HUMAN -MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFD------LSHGS 53
-SP|P68871|HBB_HUMAN MVHLTPEEKSAVTALWGKVNV--DEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGN 58
-                     : *:* :*: *.* ****..  .* *.*** *::: :* *: :*  *.         *.
-
-SP|P69905|HBA_HUMAN AQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAH 113
-SP|P68871|HBB_HUMAN PKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHH 118
-                     :**.***** .*:::.:**:*:: .::::**:**..**:*** **:**.: *: .** *
-
-SP|P69905|HBA_HUMAN LPAEFTPAVHASLDKFLASVSTVLTSKYR 142
-SP|P68871|HBB_HUMAN FGKEFTPPVQAAYQKVVAGVANALAHKYH 147
-                    :  **** *:*: :*.:*.*:..*: **:
-```
+| Parameter           | Type   | Available values                       | Default value  |
+|---------------------|--------|----------------------------------------|----------------|
+| gapOpenPenalty      | Int    |                                        | 10             |
+| gapExtensionPenalty | Int    |                                        | 1              |
+| format              | String | ALN, CLUSTALW, FASTA, GCG, MSF, PDBWEB | CLUSTALW       |
