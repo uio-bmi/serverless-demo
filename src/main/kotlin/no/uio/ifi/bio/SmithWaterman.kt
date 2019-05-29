@@ -23,6 +23,8 @@ fun getAlignment(
     gapExtensionPenalty: Int? = null,
     format: String? = DEFAULT_FORMAT
 ): String {
+    LOGGER.info("gapOpenPenalty: {}, gapExtensionPenalty: {}, format: {}", gapOpenPenalty, gapExtensionPenalty, format)
+
     val sequence1 = getSequenceById(uniProteinId1)
     LOGGER.info("sequence1: {}", sequence1)
 
