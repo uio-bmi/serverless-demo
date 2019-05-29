@@ -7,6 +7,8 @@
 Demo application is written in Kotlin and uses [Serverless](https://serverless.com/) framework for enabling AWS serverless deployment. [Smith–Waterman algorithm](https://en.wikipedia.org/wiki/Smith%E2%80%93Waterman_algorithm) algorithm is implemented as an example:
 > The **Smith–Waterman algorithm** performs local sequence alignment; that is, for determining similar regions between two strings of nucleic acid sequences or protein sequences. Instead of looking at the entire sequence, the Smith–Waterman algorithm compares segments of all possible lengths and optimizes the similarity measure.
 
+Powered by: [![BioJava](https://biojava.org/images/logo/logo_100.png)](https://biojava.org/)
+
 ### Requirements
 - Java 8
 - Maven
@@ -38,7 +40,7 @@ sls deploy --region <your-AWS-region>
 ### Example
 Let's take as an example aligment of [Hemoglobin subunit alpha](https://www.uniprot.org/uniprot/P69905) and [Hemoglobin subunit beta](https://www.uniprot.org/uniprot/P68871).
 
-**serverless-demo** alignment: https://7zjp8jut08.execute-api.eu-north-1.amazonaws.com/dev/alignment?uniProteinId1=P00750&uniProteinId2=P68871
+**serverless-demo** alignment: https://7zjp8jut08.execute-api.eu-north-1.amazonaws.com/dev/alignment?uniProteinId1=P69905&uniProteinId2=P68871
 
 **Execution time**: 848.49 ms
 
@@ -46,17 +48,17 @@ Let's take as an example aligment of [Hemoglobin subunit alpha](https://www.unip
 ```
 CLUSTAL W MSA from BioJava
 
-P00750    SAYRGTHSLTESGASCL-------PWNSMIL--IGKVYTAQ----NPSAQALG---LGKH 264
-          .|  |  .. | |   |       ||        | . |      ||  .| |   ||  
-P68871    TALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAF  72
+P69905    LSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHF-DLS-----HGSAQV  56
+          |.| .|. | | ||||  .  | | ||| |. . .| |. .|  | |||      |. .|
+P68871    LTPEEKSAVTALWGKV--NVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKV  61
 
-P00750    NYCRNPDGDAKPWCHVLKNRRLTWE-----YCDVPSCSTCGLRQYSQPQ-FRIKGGLFAD 318
-          .     || |    | | | . |.      .||         . .  |. ||. | .   
-P68871    S-----DGLA----H-LDNLKGTFATLSELHCD---------KLHVDPENFRLLGNVLVC 113
+P69905    KGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPA 116
+          | |||||  | .. .||.|..    . ||.||  || ||| ||.|| . |.  || |   
+P68871    KAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGK 121
 
-P00750    IASH--------PWQAA 327
-          . .|        | |||
-P68871    VLAHHFGKEFTPPVQAA 130
+P69905    EFTPAVHASLDKFLASVSTVLTSKY 141
+          |||| |.|.  | .| |.  |  ||
+P68871    EFTPPVQAAYQKVVAGVANALAHKY 146
 ```
 
 **UniProt alignment**: https://www.uniprot.org/align/
