@@ -14,10 +14,15 @@ import java.net.URL
 
 val LOGGER: Logger = getLogger("no.uio.ifi")
 
-const val GOP = 8
-const val EXTEND = 1
+const val DEFAULT_FORMAT = "CLUSTALW"
 
-fun getAlignment(uniProteinId1: String, uniProteinId2: String): String {
+fun getAlignment(
+    uniProteinId1: String,
+    uniProteinId2: String,
+    gapOpenPenalty: Int? = null,
+    gapExtensionPenalty: Int? = null,
+    format: String? = DEFAULT_FORMAT
+): String {
     val sequence1 = getSequenceById(uniProteinId1)
     LOGGER.info("sequence1: {}", sequence1)
 
@@ -26,8 +31,8 @@ fun getAlignment(uniProteinId1: String, uniProteinId2: String): String {
 
     val matrix = SubstitutionMatrixHelper.getBlosum65()
     val penalty = SimpleGapPenalty()
-    penalty.openPenalty = GOP
-    penalty.extensionPenalty = EXTEND
+    gapOpenPenalty?.let { penalty.openPenalty = it }
+    gapExtensionPenalty?.let { penalty.extensionPenalty = it }
 
     val smithWaterman = Alignments.getPairwiseAligner<ProteinSequence, AminoAcidCompound>(
         sequence1,
@@ -37,7 +42,7 @@ fun getAlignment(uniProteinId1: String, uniProteinId2: String): String {
         matrix
     )
 
-    return smithWaterman.pair.toString(Profile.StringFormat.CLUSTALW)
+    return smithWaterman.pair.toString(Profile.StringFormat.valueOf(format ?: DEFAULT_FORMAT))
 }
 
 fun getSequenceById(uniProteinId: String): ProteinSequence? {

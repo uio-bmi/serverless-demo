@@ -15,10 +15,19 @@ class SmithWatermanHandler : RequestHandler<Map<String, Any?>, Response> {
         logger.info("queryStringParameters: {}", queryStringParameters)
         val uniProteinId1 = queryStringParameters["uniProteinId1"]
         val uniProteinId2 = queryStringParameters["uniProteinId2"]
+        val gapOpenPenalty = queryStringParameters["gapOpenPenalty"]
+        val gapExtensionPenalty = queryStringParameters["gapExtensionPenalty"]
+        val format = queryStringParameters["format"]
         if (uniProteinId1 == null || uniProteinId2 == null) {
             return Response(400, emptyMap(), "Bad request")
         }
-        val alignment = getAlignment(uniProteinId1.toString(), uniProteinId2.toString())
+        val alignment = getAlignment(
+            uniProteinId1 as String,
+            uniProteinId2 as String,
+            gapOpenPenalty as Int?,
+            gapExtensionPenalty as Int?,
+            format as String?
+        )
         return Response(body = alignment)
     }
 
