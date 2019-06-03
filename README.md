@@ -1,5 +1,7 @@
 # serverless-demo
+[![Serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 [![Build Status](https://travis-ci.org/uio-bmi/serverless-demo.svg?branch=master)](https://travis-ci.org/uio-bmi/serverless-demo)
+[![License](https://img.shields.io/npm/l/serverless.svg)](https://tldrlegal.com/license/mit-license)
 
 ## Demo project of AWS serverless application
 
